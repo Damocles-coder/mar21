@@ -31,7 +31,7 @@ public class GuessANumber {
 				e.printStackTrace();
 				continue;
 			}
-			if (Math.abs(selection-randomNumber)<10) {
+			if (Math.abs(selection-randomNumber)<=10) {
 				withinRange = true;
 				break;
 			}
