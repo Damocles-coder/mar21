@@ -72,7 +72,7 @@ public class PrintPattern {
 	 */
 	public void lineBreakGenerator(int length) {
 		for (int j = 0; j<length; j++) {
-			System.out.print("-");
+			System.out.print(".");
 		}
 		System.out.println("");
 	}
