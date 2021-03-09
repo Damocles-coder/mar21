@@ -3,7 +3,9 @@
  */
 package com.smoothstack.jb.day1;
 import java.lang.Math;
-import java.util.*;
+import java.util.Scanner;
+import java.util.InputMismatchException;
+//import java.util.*; Don't use star unless it's for something smaller
 
 /**
  * @author dyltr
@@ -29,6 +31,7 @@ public class GuessANumber {
 			}
 			catch (InputMismatchException e) {
 				e.printStackTrace();
+				scanner.next();
 				continue;
 			}
 			if (Math.abs(selection-randomNumber)<=10) {

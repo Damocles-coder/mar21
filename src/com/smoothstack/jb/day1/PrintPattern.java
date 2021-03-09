@@ -34,7 +34,7 @@ public class PrintPattern {
 			for (int j = 1; j<i; j++) {
 				System.out.print(" ");
 			}
-			for (int k = 1 + 2*(4-i); k>0; k--) {
+			for (int k = 1 + (4-i); k>0; k--) {
 				System.out.print("*");
 			}
 			System.out.println("");
