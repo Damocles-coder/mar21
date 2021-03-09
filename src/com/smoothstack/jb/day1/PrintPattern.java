@@ -24,24 +24,14 @@ public class PrintPattern {
 			}
 			System.out.println("");
 		}
-		p.lineBreakGenerator(9);
+		p.lineBreakGenerator(6);
 		System.out.println("");
-		
-		//left-top heavy pyramid
-		System.out.println("2)");
-		p.lineBreakGenerator(10);
-		for (int i = 4; i>=1; i--) {
-			for (int j = 0; j<i; j++) {
-				System.out.print("*");
-			}
-			System.out.println("");
-		}
 		System.out.println("");
 		
 		//center-bottom heavy pyramid
-		System.out.println("3)");
+		System.out.println("2)");
 		for (int i = 4; i>=1; i--) {
-			for (int j = 0; j<i; j++) {
+			for (int j = 1; j<i; j++) {
 				System.out.print(" ");
 			}
 			for (int k = 1 + 2*(4-i); k>0; k--) {
@@ -49,21 +39,19 @@ public class PrintPattern {
 			}
 			System.out.println("");
 		}
-		p.lineBreakGenerator(11);
+		p.lineBreakGenerator(5);
 		System.out.println("");
 		
-		//center-top heavy pyramid
-		System.out.println("4)");
-		p.lineBreakGenerator(12);
-		for (int i = 1; i<=4; i++) {
+		//left-top heavy pyramid
+		System.out.println("3)");
+		p.lineBreakGenerator(5);
+		for (int i = 4; i>=1; i--) {
 			for (int j = 0; j<i; j++) {
-				System.out.print(" ");
-			}
-			for (int k = 7 - 2*(i-1); k>0; k--) {
 				System.out.print("*");
 			}
 			System.out.println("");
 		}
+		System.out.println("");
 		
 	}
 	
