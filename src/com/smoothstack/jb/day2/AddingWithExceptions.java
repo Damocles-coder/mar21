@@ -29,7 +29,7 @@ public class AddingWithExceptions {
 		//may have misunderstood the assignment
 		StringBuilder sum2 = new StringBuilder("");
 		for (String input:args) {
-			sum2.append(input);
+			sum2.append(input+" ");
 		}
 		System.out.println(sum2);
 	}
