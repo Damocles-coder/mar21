@@ -24,7 +24,14 @@ public class AddingWithExceptions {
 				continue;
 			}
 		}
-		System.out.print(sum);
+		System.out.println(sum);
+		
+		//may have misunderstood the assignment
+		StringBuilder sum2 = new StringBuilder("");
+		for (String input:args) {
+			sum2.append(input);
+		}
+		System.out.println(sum2);
 	}
 
 }
