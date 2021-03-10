@@ -46,6 +46,7 @@ public class GuessANumber {
 		}
 		System.out.println((withinRange)?"Close Enough,":"The answer was " + randomNumber);
 		System.out.println("The answer was " + randomNumber);
+		scanner.close();
 	}
 	
 	/**
