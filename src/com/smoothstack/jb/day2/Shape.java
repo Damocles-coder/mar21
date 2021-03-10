@@ -15,6 +15,7 @@ public interface Shape {
 	abstract void display();
 	
 	/**
+	 * Stores the area in an instance variable
 	 */
 	abstract void calculateArea();
 

@@ -7,12 +7,12 @@ import java.util.Arrays;
 
 /**
  * @author dyltr
- *
+ * Finds the max and prints out position
  */
 public class MaxOf2DArray {
 
 	/**
-	 * @param args
+	 * @param args not required
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -21,6 +21,10 @@ public class MaxOf2DArray {
 		System.out.println(Arrays.toString(m1.findMax(twoDArray)));
 	}
 	
+	/**
+	 * @param twoDArray input 2d array to find max in
+	 * @return Array containing Max, X position, Y position
+	 */
 	private Integer[] findMax(Integer[][] twoDArray) {
 		if (twoDArray[0][0] == null) {
 			return null;

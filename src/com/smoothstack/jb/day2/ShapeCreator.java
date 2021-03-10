@@ -10,6 +10,7 @@ package com.smoothstack.jb.day2;
 public class ShapeCreator {
 
 	/**
+	 * Tests the shape classes
 	 * @param args
 	 */
 	public static void main(String[] args) {
