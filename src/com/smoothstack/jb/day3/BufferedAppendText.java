@@ -37,7 +37,6 @@ public class BufferedAppendText {
 			b.append(scanner.nextLine());
 			b.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		scanner.close();
