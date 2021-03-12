@@ -12,7 +12,11 @@ class SingletonTest {
 	
 	@Test
 	void getInstanceTest() {
+		//tests if it returns something not null
 		assertNotNull(Singleton.getInstance());
+		
+		//tests if instance is the correct type
+		assertEquals(Singleton.class.getName(),Singleton.getInstance().getClass().getName());
 	}
 
 }
