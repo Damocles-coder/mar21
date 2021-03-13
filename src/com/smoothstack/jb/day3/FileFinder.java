@@ -35,17 +35,17 @@ public class FileFinder {
 	}
 	
 	public void printFolderContent(File file, int level) {
-		File temp;
 		for (int i=0; i<level; i++) {
-			System.out.print("\t");
+			System.out.print("  ");
 		}
 		System.out.println(file.getName());
 		level++;
 		if (file.isDirectory()) {
 			File[] list = file.listFiles();
-			for (File item:list) {
-				temp = new File (file.getPath()+"/"+item);
-				printFolderContent(item, level);
+			if (list != null) {
+				for (File item:list) {
+					printFolderContent(item, level);
+				}
 			}
 		}
 	}

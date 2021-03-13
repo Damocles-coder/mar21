@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.smoothstack.jb.day1"},{"l":"com.smoothstack.jb.day2"},{"l":"com.smoothstack.jb.day3"},{"l":"com.smoothstack.jb.day4"},{"l":"tests.day4"}];updateSearchResults();
