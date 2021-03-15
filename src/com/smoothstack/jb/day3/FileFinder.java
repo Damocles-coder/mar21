@@ -42,6 +42,7 @@ public class FileFinder {
 		level++;
 		if (file.isDirectory()) {
 			File[] list = file.listFiles();
+			//generating an expensive especially for a large recursive solution
 			if (list != null) {
 				for (File item:list) {
 					printFolderContent(item, level);
