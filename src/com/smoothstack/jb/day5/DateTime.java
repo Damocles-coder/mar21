@@ -153,7 +153,7 @@ public class DateTime {
 				month=12;
 				year--;
 			}
-			day = Month.of(month).length(isLeap(year));
+			day = Month.of(month).length(Year.isLeap(year));
 			LocalDate temp = LocalDate.of(year, month, day);
 			while (temp.getDayOfWeek()!=DayOfWeek.THURSDAY) {
 				day--;
@@ -202,7 +202,7 @@ public class DateTime {
 		}
 		i+=7;
 		date=date.plusDays(7);
-		int length = Month.of(date.getMonthValue()).length(isLeap(date.getYear()));
+		int length = Month.of(date.getMonthValue()).length(Year.isLeap(date.getYear()));
 		for (;i<=length;i+=7) {
 			mondayMadness.add(date);
 			date=date.plusDays(7);
@@ -215,16 +215,6 @@ public class DateTime {
 			return true;
 		}
 		return false;
-	}
-	
-	/**
-	 * Takes too long to get the year singleton just to find a boolean value
-	 * for a month. Copied directly from Year class of Date Time api.
-	 * @param year
-	 * @return
-	 */
-	private boolean isLeap(int year) {
-		return ((year & 3) == 0) && ((year % 100) != 0 || (year % 400) == 0);
 	}
 	
 }

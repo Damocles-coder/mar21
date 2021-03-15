@@ -2,7 +2,11 @@
  * 
  */
 package com.smoothstack.jb.day5;
+import static org.hamcrest.CoreMatchers.containsString;
+
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author dyltr
@@ -22,8 +26,8 @@ public class BasicLambdas {
 		//sarray = m1.sortArrayByLength(args);
 		//sarray = m1.sortArrayByReverseLength(args);
 		//sarray = m1.sortArrayByFirstChar(args);
-		sarray = m1.sortArrayByLetterE(args);
-		//sarray = Arrays.sort(args, (s1,s2)->staticHelper(s1,s2));
+		//sarray = m1.sortArrayByLetterE(args);
+		sarray = m1.staticHelper(args);
 		for (String string : sarray) {
 			System.out.println(string);
 		}
@@ -46,7 +50,7 @@ public class BasicLambdas {
 	
 	public String[] sortArrayByLetterE(String[] sarray) {
 		Arrays.sort(sarray, (s1, s2)->{
-			if(s1.charAt(0)=='e') {
+			if(s1.contains("e")) {
 				//-1 comes before 1
 				return -1;
 			}
@@ -55,14 +59,16 @@ public class BasicLambdas {
 		return sarray;
 	}
 	
-	public static String[] staticHelper(String s1, String s2) {
-//		String[] sarray = (s1,s2) -> {
-//			if(s1.charAt(0)=='e') {
-//				//-1 comes before 1
-//				return -1;
-//			}
-//			return 1;
-//		});
-		return null;
+	public String[] staticHelper(String[] sarray) {
+		List<String> before = Arrays.asList(sarray);
+		List<String> after = before.stream().filter((s)->{
+			return (s.contains("e"));
+				}).collect(Collectors.toList());
+		List<String> after2 = before.stream().filter((s)->{
+			return (!s.contains("e"));
+				}).collect(Collectors.toList());
+		after.addAll(after2);
+		after.toArray(sarray);
+		return sarray;
 	}
 }

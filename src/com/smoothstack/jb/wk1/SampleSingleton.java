@@ -30,12 +30,20 @@ public class SampleSingleton {
 	
 	//Just fixed the big data so it could be converted to int,
 	public static void databaseQuery(BigDecimal input) throws SQLException {
+		try {
 		conn = DriverManager.getConnection("url of database");
 		Statement st = conn.createStatement();
 		ResultSet rs = st.executeQuery("select id from table");
 		int x = 0;
 		while(rs.next()) {
 			x = rs.getInt(1) * input.intValue();
+		}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			conn.close();
 		}
 	}
 }

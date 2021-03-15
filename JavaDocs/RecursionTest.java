@@ -11,6 +11,7 @@ import com.smoothstack.jb.wk1.Recursion;
 
 /**
  * @author dyltr
+ * test recursion class
  */
 class RecursionTest {
 
