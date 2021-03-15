@@ -16,7 +16,7 @@ import java.time.Instant;
 
 public class DateTime {
 
-	Instant birthday;
+	public Instant birthday;
 	
 	/**
 	 * @param args
@@ -35,7 +35,7 @@ public class DateTime {
 		
 	}
 	
-	public LocalDate createSimpleDate(Scanner scanner) throws InputMismatchException {
+	private LocalDate createSimpleDate(Scanner scanner) throws InputMismatchException {
 		System.out.print("Enter year: ");
 		int year=scanner.nextInt();
 		System.out.print("Enter month: ");
@@ -45,7 +45,7 @@ public class DateTime {
 		return LocalDate.of(year, month, day);
 	}
 	
-	public void printMenu() {
+	private void printMenu() {
 		System.out.println("1. Store birthday");
 		System.out.println("2. Find Previous Thursday");
 		System.out.println("3. Convert Instant to ZonedDateTime");
@@ -56,7 +56,7 @@ public class DateTime {
 		System.out.println("0. Exit");
 	}
 	
-	public boolean menu(Scanner scanner) throws InputMismatchException{
+	private boolean menu(Scanner scanner) throws InputMismatchException{
 		int choice;
 		LocalDate date;
 		
@@ -81,11 +81,27 @@ public class DateTime {
 			break;
 		case 3:
 			//Instant to ZonedDateTime
-			
+			System.out.println("Enter time in this format: 007-12-03T10:15:30.00Z");
+			try {
+				findZonedTime(Instant.parse(scanner.nextLine()),ZoneOffset.ofHours(scanner.nextInt()));
+				System.out.println("Successfully stored");
+			}
+			catch(DateTimeParseException e) {
+				e.printStackTrace();
+			}
 			break;
 		case 4:
 			//ZonedDateTime to Instant
-			
+			//Instant to ZonedDateTime
+			System.out.println("Enter time in this format: 2007-12-03T10:15:30+01:00[Europe/Paris]"
+					+ " followed by the offset in hours.");
+			try {
+				findInstantTime(ZonedDateTime.parse(scanner.nextLine()));
+				System.out.println("Successfully stored");
+			}
+			catch(DateTimeParseException e) {
+				e.printStackTrace();
+			}
 			break;
 		case 5:
 			//find length of each month
@@ -94,7 +110,7 @@ public class DateTime {
 			printMonthLengths(choice);
 			break;
 		case 6:
-			//list mondays
+			//list Mondays
 			date = createSimpleDate(scanner);
 			for (LocalDate i : iHateMondays(date)) {
 				System.out.println(i.toString());
@@ -128,30 +144,36 @@ public class DateTime {
 		int day = date.getDayOfMonth() + offset;
 		int month = date.getMonthValue();
 		int year = date.getYear();
+		
 		// if the day is on the previous month
 		if (day <= 0) {
 			//change to previous month
 			month--;
 			if (month==0) {
 				month=12;
+				year--;
 			}
-			day = Month.of(month).length(isLeap(year)) + offset;
+			day = Month.of(month).length(isLeap(year));
+			LocalDate temp = LocalDate.of(year, month, day);
+			while (temp.getDayOfWeek()!=DayOfWeek.THURSDAY) {
+				day--;
+				temp = LocalDate.of(year, month, day);
+			}
 		}
 		//time doesn't matter in this case
 		LocalDate prevThur = LocalDate.of(year, month, day);
 		return prevThur;
 	}
 	
-	/*
-	 * Question: The difference between a ZoneID and a ZoneOffset
-	 * The
-	 */
-	public ZonedDateTime findZonedTime(Instant date, int offset) {
-		return null;
+	public ZonedDateTime findZonedTime(Instant date, ZoneOffset offset) {
+		//gets the Time zone from given offset from this one
+		ZoneId id = ZoneOffset.ofOffset("UTC", offset);
+		//returns date time at this zone
+		return date.atZone(id);
 	}
 	
-	public Instant findInstantTime(ZonedDateTime date, int offset) {
-		return null;
+	public Instant findInstantTime(ZonedDateTime date) {
+		return date.toInstant();
 	}
 	
 	public boolean printMonthLengths(int choice) {
@@ -176,10 +198,10 @@ public class DateTime {
 		//Goes to the first monday
 		while (i>0) {
 			i-=7;
-			date.minusDays(7);
+			date=date.minusDays(7);
 		}
 		i+=7;
-		date.plusDays(7);
+		date=date.plusDays(7);
 		int length = Month.of(date.getMonthValue()).length(isLeap(date.getYear()));
 		for (;i<=length;i+=7) {
 			mondayMadness.add(date);
