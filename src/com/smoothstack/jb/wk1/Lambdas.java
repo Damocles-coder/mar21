@@ -64,6 +64,9 @@ public class Lambdas {
 
 	}
 
+	/**
+	 * @return true if number is odd
+	 */
 	public PerformOperation isOdd() {
 		return (a) -> (a%2!=0);
 	}
@@ -89,6 +92,9 @@ public class Lambdas {
 		};
 	}
 	
+	/**
+	 * @return true if number is palindrome
+	 */
 	public PerformOperation isPalindrome() {
 		return (a) -> {
 			String test = ""+a;

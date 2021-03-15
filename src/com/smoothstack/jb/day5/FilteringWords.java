@@ -24,6 +24,6 @@ public class FilteringWords {
 	}
 	
 	public List<String> filterString(List<String> array) {
-		return array.parallelStream().filter((s) -> (s.charAt(0)=='a' && s.length()==3)).collect(Collectors.toList());
+		return array.stream().filter((s) -> (s.charAt(0)=='a' && s.length()==3)).collect(Collectors.toList());
 	}
 }

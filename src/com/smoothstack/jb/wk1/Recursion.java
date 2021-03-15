@@ -33,9 +33,10 @@ public class Recursion {
 	
 	/**
 	 * @param total added this upon further inspection of assignment (not needed as you can just decrement sum
-	 * @param array
-	 * @param sum
-	 * @return
+	 * @param total : not necessary and will remove in the future
+	 * @param array : array to be groupSummed
+	 * @param sum : desired sum of groups
+	 * @return true if values can be grouped to equal sum
 	 */
 	public boolean groupSumClump(int total, int[] array, int sum) {
 		//Start at index 0
@@ -72,6 +73,14 @@ public class Recursion {
 		return false;
 	}
 	
+	
+	/**
+	 * @param total : will remove in future as you can just subtract from sum the current value
+	 * @param array
+	 * @param sum
+	 * @param index
+	 * @return true if the grouping can result in sum
+	 */
 	private boolean recursiveSum(int total, ArrayList<Integer> array, int sum, int index) {
 		total += array.get(index);
 		boolean match = false;

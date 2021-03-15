@@ -6,6 +6,10 @@ import java.util.stream.Collectors;
 
 public class Functional {
 	
+	/**
+	 * @param array
+	 * @return array of right-most integers
+	 */
 	public Integer[] rightMostDigit(Integer[] array) {
 		List<Integer> a = Arrays.asList(array);
 		List<Integer> a2 = a.parallelStream().map((i)->{
@@ -15,6 +19,10 @@ public class Functional {
 		return array;
 	}
 	
+	/**
+	 * @param array
+	 * @return array with values multiplied by 2 
+	 */
 	public Integer[] multByTwo(Integer[] array) {
 		List<Integer> a = Arrays.asList(array);
 		List<Integer> a2 = a.parallelStream().map((i)->{
@@ -24,9 +32,13 @@ public class Functional {
 		return array;
 	}
 
+	/**
+	 * @param array
+	 * @return String array with no x
+	 */
 	public String[] removeX(String[] array) {
 		List<String> a = Arrays.asList(array);
-		List<String> a2 = a.parallelStream().map((i)->{
+		List<String> a2 = a.stream().map((i)->{
 			return i.replace("x", "");
 		}).collect(Collectors.toList());
 		a2.toArray(array);
