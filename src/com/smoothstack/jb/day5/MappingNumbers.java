@@ -10,13 +10,14 @@ import java.util.stream.Collectors;
  * @author dyltr
  *
  */
-public class MappingNumbers implements AppendNumbers {
+public class MappingNumbers {
 	
 	/**
 	 * Accepting integers through command line arguments
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		MappingNumbers m1 = new MappingNumbers();
 		List<Integer> array = new ArrayList<Integer>();
 		for (String string : args) {
 			try {
@@ -26,22 +27,18 @@ public class MappingNumbers implements AppendNumbers {
 				e.printStackTrace();
 			}
 		}
-		MappingNumbers m1 = new MappingNumbers();
-		List<String> afterArray = array.stream().map((i) -> m1.appendInt(i)).collect(Collectors.toList());
-		boolean first = true;
-		for (String string : afterArray) {
-			if (first) {
-				first = false;
-				System.out.print(string);
-			}
-			else
-				System.out.print("," + string);
+		System.out.println(m1.appendedIntegers(array));
+	}
+	
+	public String appendedIntegers(List<Integer> list) {
+		StringBuilder result = new StringBuilder("");
+		List<String> after = list.stream().map((i) -> {
+			return (i%2==0)?"e"+i:"o"+i;
+		}).collect(Collectors.toList());
+		result.append(after.get(0));
+		for (int i = 1; i<after.size(); i++) {
+			result.append("," + after.get(i));
 		}
+		return result.toString();
 	}
-
-	@Override
-	public String appendInt(int i) {
-		return (i%2==0)?"e"+i:"o"+i;
-	}
-
 }
