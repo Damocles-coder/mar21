@@ -17,13 +17,13 @@ public class BasicLambdas {
 	}
 	
 	public static void main(String[] args) {
-		String[] sarray = {"This","is","a","string","array","everything","is","Awesome"};
+		String[] sarray;
 		BasicLambdas m1 = new BasicLambdas();
-		//sarray = m1.sortArrayByLength(sarray);
-		//sarray = m1.sortArrayByReverseLength(sarray);
-		//sarray = m1.sortArrayByFirstChar(sarray);
-		sarray = m1.sortArrayByLetterE(sarray);
-		//sarray = Arrays.sort(sarray, (s1,s2)->staticHelper());
+		//sarray = m1.sortArrayByLength(args);
+		//sarray = m1.sortArrayByReverseLength(args);
+		//sarray = m1.sortArrayByFirstChar(args);
+		sarray = m1.sortArrayByLetterE(args);
+		//sarray = Arrays.sort(args, (s1,s2)->staticHelper(s1,s2));
 		for (String string : sarray) {
 			System.out.println(string);
 		}
@@ -53,5 +53,16 @@ public class BasicLambdas {
 			return 1;
 		});
 		return sarray;
+	}
+	
+	public static String[] staticHelper(String s1, String s2) {
+//		String[] sarray = (s1,s2) -> {
+//			if(s1.charAt(0)=='e') {
+//				//-1 comes before 1
+//				return -1;
+//			}
+//			return 1;
+//		});
+		return null;
 	}
 }

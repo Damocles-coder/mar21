@@ -2,9 +2,13 @@ package com.smoothstack.jb.wk1;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Recursion {
 	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int sum = 0;
 		int[] array = new int[args.length];
 		for (int i = 0; i<args.length; i++) {
 			try {
@@ -14,12 +18,26 @@ public class Recursion {
 				e.printStackTrace();
 			}
 		}
+		try {
+			sum = scanner.nextInt();
+		}
+		catch(InputMismatchException e) {
+			e.printStackTrace();
+			scanner.close();
+			System.exit(0);
+		}
 		Recursion m1 = new Recursion();
-		System.out.print(m1.matchSum(array, 8));
-		
+		System.out.print(m1.groupSumClump(0, array, sum));
+		scanner.close();
 	}
 	
-	public boolean matchSum(int[] array, int sum) {
+	/**
+	 * @param total added this upon further inspection of assignment (not needed as you can just decrement sum
+	 * @param array
+	 * @param sum
+	 * @return
+	 */
+	public boolean groupSumClump(int total, int[] array, int sum) {
 		//Start at index 0
 		ArrayList<Integer> trueGroup = new ArrayList<Integer>();
 		int temp = 0;
@@ -47,20 +65,20 @@ public class Recursion {
 		//sorts for easy addition
 		Collections.sort(trueGroup);
 		for(int i = 0; i<trueGroup.size(); i++) {
-			if(recursiveSum(trueGroup, sum, i)) {
+			if(recursiveSum(total, trueGroup, sum, i)) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public boolean recursiveSum(ArrayList<Integer> array, int sum, int index) {
-		sum -= array.get(index);
+	private boolean recursiveSum(int total, ArrayList<Integer> array, int sum, int index) {
+		total += array.get(index);
 		boolean match = false;
-		if (sum<0) {
+		if (sum<total) {
 			return false;
 		}
-		else if (sum==0) {
+		else if (sum==total) {
 			return true;
 		}
 		else {
@@ -70,7 +88,7 @@ public class Recursion {
 			 */
 			
 			for (int i=index+1; i<array.size(); i++) {
-				if (recursiveSum(array,sum,i)) {
+				if (recursiveSum(total,array,sum,i)) {
 					match = true;
 					break;
 				}
